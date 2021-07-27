@@ -2,6 +2,7 @@
 
 @section('content')
     
+    @auth
         <div class="container bg-white p-4 w-50">
             <h1>KBCF</h1>
             <hr>
@@ -134,7 +135,7 @@
     
             </form>
         </div>
-    
+@endauth
 
 @endsection
 

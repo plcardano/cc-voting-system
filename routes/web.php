@@ -47,7 +47,7 @@ Route::post('/sui', [SuiCreateController::class, 'store'])->middleware('auth');
 Route::get('/sui/login', [SuiLoginController::class, 'index'])->name('suilogin');
 Route::post('/sui/login', [SuiLoginController::class, 'store']);
 
-Route::get('/vote', [VoteController::class, 'index'])->name('vote');
+Route::get('/vote', [VoteController::class, 'index'])->name('vote')->middleware('auth');
 Route::get('/vote/done', function(){
     return view('vote.done');
 })->name('done');

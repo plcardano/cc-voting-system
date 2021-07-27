@@ -68,6 +68,7 @@
     </div>
 
     <button class="w-100 btn btn-lg btn-secondary" type="submit">Next ></button>
+    <a href="/" class="w-100 btn btn-lg btn-secondary mt-1">< Back</a>
     <p class="mt-5 mb-3 text-muted">&copy; KBCF Council Election 2022</p>
   </form>
 </main>
