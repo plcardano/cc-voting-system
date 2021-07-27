@@ -9,6 +9,12 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="nav navbar-nav ml-auto">
           <!-- Authentication Links -->
+            @guest
+            <li class="nav-item">
+              <a href="{{ route('login') }}" class="btn btn-outline-light">Admin</a>            
+            </li>
+            @endguest
+
              @auth
             <li class="nav-item">
               <form action="{{ route('logout') }}" method="POST">

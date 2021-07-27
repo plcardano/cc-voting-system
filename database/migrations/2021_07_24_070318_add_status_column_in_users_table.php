@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuisTable extends Migration
+class AddStatusColumnInUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSuisTable extends Migration
      */
     public function up()
     {
-        Schema::create('suis', function (Blueprint $table) {
-            $table->id();
-            $table->string('sui');
-            $table->string('password');
-            $table->integer('count')->default(0);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('status')->default(0);
         });
     }
 
@@ -29,6 +25,8 @@ class CreateSuisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suis');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 }

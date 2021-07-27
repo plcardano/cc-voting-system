@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
@@ -17,13 +19,6 @@ class VoteController extends Controller
 
     public function store(Request $request){
 
-        // $votes = $request->all();
-
-        // DB::table('candidates')->increment('count', 1)->where('candidate' => $votes);     
-
-        // return redirect()->route('vote');
-
-    
 
     }
 
@@ -63,7 +58,10 @@ class VoteController extends Controller
         Candidate::where('id', $request->candidate8)
         ->update(['count' => DB::raw('count+1')]);
 
-        // $candidates = DB::table('candidates')->where('id', '=', $input);
+        $user = Auth::user();
+        $user->status = 1;
+        $user->save();
+        Auth::logout();
 
         return redirect()->route('done');
 

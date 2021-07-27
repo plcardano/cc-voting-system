@@ -18,12 +18,14 @@
                         <tbody class="table table-dark">
                             <tr>
                                 <th>SUI</th>
+                                <th>Status</th>
                             </tr>
             
                             @foreach ($suis as $sui)
                             <tr>
                             
                                 <td>{{ $sui->name }}</td>
+                                <td>{{ $sui->status }}</td>
                                 
                             </tr>   
                             @endforeach    
@@ -40,7 +42,7 @@
        
     </div>
 
-    div
+    
 
 
 

@@ -10,7 +10,10 @@ class LogoutController extends Controller
 {
     public function store()
     {
-        Auth::logout();
+        // $user = Auth::user();
+        // $user->status = 1;
+        // $user->save();
+        // Auth::logout();
 
         return redirect()->route('home');
     }

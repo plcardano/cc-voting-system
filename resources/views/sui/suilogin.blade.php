@@ -52,6 +52,12 @@
                 
   @endif
 
+  @if (session('error'))
+   <div class="alert alert-danger">
+        {{ session('error') }}
+   </div>
+  @endif
+
   <form action="{{ route('suilogin') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <h1 class="h3 mb-3 fw-normal">Please Enter your SUI:</h1>
