@@ -10,11 +10,14 @@
         <div class="row">
             <div class="col-md-6">
                 
-                <a class="btn btn-outline-dark mb-2" href="{{ route('createsui') }}">Create SUI</a>
                 
-                <h1>SUI</h1>
+                
+                <h2>SUI</h2>
         
-                    <table>
+                <a class="btn btn-primary mb-2" href="{{ route('createsui') }}">Create SUI</a>
+
+                    <table class="mb-4">
+                        {{ $suis->links() }}
                         <tbody class="table table-dark">
                             <tr>
                                 <th>SUI</th>
@@ -32,14 +35,66 @@
                         </tbody>
                         
                     </table>
+                    
             </div>
             
+            
             <div class="col-md-6">
-                <a class="btn btn-outline-dark mb-2" href="{{ route('result') }}">Result</a>
+                
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>              
+                @endif
+
+                <h2>Candidates</h2>
+
+                <a class="btn btn-primary mb-2" href="{{ route('candidates.create') }}" >New Candidate</a>
+                <a class="btn btn-success mb-2 float-right" href="{{ route('result') }}">Result</a>
+
+                
+
+                <table class="mb-4">
+                    <tbody class="table table-dark">
+                        <tr class="text-center">
+                            <th>Candidates</th>
+                            <th>Manage</th>
+                        </tr>
+        
+                        @foreach ($candidates as $candidate)
+                        <tr>
+                        
+                            <td>{{ $candidate->candidate }}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a href="{{ route('candidates.edit', $candidate->id) }}" class="btn btn-secondary"><i class="fas fa-fw fa-edit"></i></a>
+                                        
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="{{ route('candidates.destroy', $candidate->id) }}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </td>
+                            
+                        </tr>   
+                        @endforeach    
+                    </tbody>
+                    
+                </table>
+                {{-- {{ $candidates->links() }} --}}
+                
             </div>
     
         </div>
-       
+
     </div>
 
     

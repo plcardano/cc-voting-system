@@ -9,6 +9,8 @@ class Candidate extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['candidate'];
+
     public function vote(){
         return $this->hasMany('App\Models\Vote');
     }

@@ -10,9 +10,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $suis = User::orderBy('created_at', 'desc')->get();
+        $suis = User::orderBy('created_at', 'desc')->paginate(10);
+        $candidates = Candidate::all();
 
-        return view('admin.dashboard', compact('suis'));
+        return view('admin.dashboard', compact('suis', 'candidates'));
     }
 
     public function result(){

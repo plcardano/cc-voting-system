@@ -13,7 +13,7 @@ class LogoutController extends Controller
         // $user = Auth::user();
         // $user->status = 1;
         // $user->save();
-        // Auth::logout();
+        Auth::logout();
 
         return redirect()->route('home');
     }

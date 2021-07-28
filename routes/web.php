@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoteController;
-use App\Http\Controllers\Auth\SuiLoginController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Auth\SuiCreateController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\SuiLoginController;
+use App\Http\Controllers\Auth\SuiCreateController;
 use App\Http\Controllers\Auth\RegisterUserController;
 
 
@@ -54,5 +55,5 @@ Route::get('/vote/done', function(){
 Route::patch('/vote/update', [VoteController::class, 'update'])->name('voteupdate');
 Route::post('/vote', [VoteController::class, 'store']);
 
-
+Route::resource('/candidates', CandidateController::class);
 

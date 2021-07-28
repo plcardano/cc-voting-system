@@ -10,6 +10,16 @@
         </div>              
     @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
         <div class="row">
             <form action="{{ route('sui') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -17,7 +27,7 @@
             
                 <div class="form-group">
                 <input type="text" class="form-control @error('sui') is-invalid @enderror" 
-                id="floatingInput" placeholder="SUI" name="name" value="{{ old('bane') }}">
+                id="floatingInput" placeholder="SUI" name="name" value="{{ old('name') }}">
             
                 @error('sui')
                     <div style="color: red">

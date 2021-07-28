@@ -7,7 +7,7 @@
         <h1>Results</h1>
 
         <div class="mb-3 mt-3">
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-dark">Back</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-outline-danger">Back</a>
         </div>
 
         <table>
