@@ -14,7 +14,7 @@
                 
                 <h2>SUI</h2>
         
-                <a class="btn btn-primary mb-2" href="{{ route('createsui') }}">Create SUI</a>
+                <a class="btn btn-light mb-2" href="{{ route('createsui') }}">Create SUI</a>
 
                     <table class="mb-4">
                         {{ $suis->links() }}
@@ -49,8 +49,8 @@
 
                 <h2>Candidates</h2>
 
-                <a class="btn btn-primary mb-2" href="{{ route('candidates.create') }}" >New Candidate</a>
-                <a class="btn btn-success mb-2 float-right" href="{{ route('result') }}">Result</a>
+                <a class="btn btn-light mb-2" href="{{ route('candidates.create') }}" >New Candidate</a>
+                <a class="btn btn-dark mb-2 float-right" href="{{ route('result') }}">Result</a>
 
                 
 

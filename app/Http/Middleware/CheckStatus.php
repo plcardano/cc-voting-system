@@ -17,7 +17,7 @@ class CheckStatus
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() && (auth()->user()->status == 1 && auth()->user()->type_id == 2)){
+        if(auth()->check() && (auth()->user()->status == 1 && !auth()->user()->is_admin)){
             Auth::logout();
 
             $request->session()->invalidate();

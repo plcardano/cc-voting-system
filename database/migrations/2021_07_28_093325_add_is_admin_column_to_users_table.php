@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTypeIdColumnToUsersTable extends Migration
+class AddIsAdminColumnToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddTypeIdColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('type_id')->default(2)->constrained();
+            $table->boolean('is_admin')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class AddTypeIdColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('type_id');
+            $table->dropColumn('is_admin');
         });
     }
 }

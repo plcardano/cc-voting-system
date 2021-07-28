@@ -30,8 +30,8 @@ Route::get('/', function () {
 //     return view('login');
 // });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::get('/dashboard/result', [DashboardController::class, 'result'])->name('result')->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('is_admin');
+Route::get('/dashboard/result', [DashboardController::class, 'result'])->name('result')->middleware('is_admin');
 
 Route::get('/admin', [LoginController::class, 'index'])->name('login');
 Route::post('/admin', [LoginController::class, 'store']);
@@ -41,9 +41,9 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'store']);
 
-Route::get('/sui', [SuiCreateController::class, 'index'])->name('sui')->middleware('auth');
-Route::get('/sui/create', [SuiCreateController::class, 'create'])->name('createsui')->middleware('auth');
-Route::post('/sui', [SuiCreateController::class, 'store'])->middleware('auth');
+Route::get('/sui', [SuiCreateController::class, 'index'])->name('sui')->middleware('is_admin');
+Route::get('/sui/create', [SuiCreateController::class, 'create'])->name('createsui')->middleware('is_admin');
+Route::post('/sui', [SuiCreateController::class, 'store'])->middleware('is_admin');
 
 Route::get('/sui/login', [SuiLoginController::class, 'index'])->name('suilogin');
 Route::post('/sui/login', [SuiLoginController::class, 'store']);
@@ -52,6 +52,7 @@ Route::get('/vote', [VoteController::class, 'index'])->name('vote')->middleware(
 Route::get('/vote/done', function(){
     return view('vote.done');
 })->name('done');
+
 Route::patch('/vote/update', [VoteController::class, 'update'])->name('voteupdate');
 Route::post('/vote', [VoteController::class, 'store']);
 

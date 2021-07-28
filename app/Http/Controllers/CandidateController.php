@@ -43,7 +43,7 @@ class CandidateController extends Controller
             'candidate' => $request->candidate
         ]);
 
-        return redirect()->route('dashboard')->with('status', 'Candidate Created Successfully');
+        return redirect()->back()->with('status', 'Candidate Created Successfully');
     }
 
     /**
