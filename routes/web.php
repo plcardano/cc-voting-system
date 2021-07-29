@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\Auth\SuiController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
@@ -41,9 +42,9 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'store']);
 
-Route::get('/sui', [SuiCreateController::class, 'index'])->name('sui')->middleware('is_admin');
-Route::get('/sui/create', [SuiCreateController::class, 'create'])->name('createsui')->middleware('is_admin');
-Route::post('/sui', [SuiCreateController::class, 'store'])->middleware('is_admin');
+// Route::get('/sui', [SuiCreateController::class, 'index'])->name('sui')->middleware('is_admin');
+// Route::get('/sui/create', [SuiCreateController::class, 'create'])->name('createsui')->middleware('is_admin');
+// Route::post('/sui', [SuiCreateController::class, 'store'])->middleware('is_admin');
 
 Route::get('/sui/login', [SuiLoginController::class, 'index'])->name('suilogin');
 Route::post('/sui/login', [SuiLoginController::class, 'store']);
@@ -57,4 +58,6 @@ Route::patch('/vote/update', [VoteController::class, 'update'])->name('voteupdat
 Route::post('/vote', [VoteController::class, 'store']);
 
 Route::resource('/candidates', CandidateController::class);
+
+Route::resource('/sui', SuiController::class)->middleware('is_admin');
 

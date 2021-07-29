@@ -21,13 +21,14 @@
     @endif
 
         <div class="row">
-            <form action="{{ route('sui') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('sui.update', $sui->id) }}" method="POST" enctype="multipart/form-data">
+                @method('PATCH')
                 @csrf
-                <h1 class="h3 mb-3 fw-normal">Create SUI</h1>
+                <h1 class="h3 mb-3 fw-normal">Update SUI</h1>
             
                 <div class="form-group">
                 <input type="text" class="form-control @error('sui') is-invalid @enderror" 
-                id="floatingInput" placeholder="SUI" name="name" value="{{ old('name') }}">
+                id="floatingInput" placeholder="SUI" name="name" value="{{ $sui->name }}">
             
                 @error('sui')
                     <div style="color: red">
@@ -37,7 +38,7 @@
                 </div>
                 <input type="hidden" name="password" value="password">
             
-                <button class="w-100 btn btn-secondary" type="submit">Create</button>
+                <button class="w-100 btn btn-secondary" type="submit">Update</button>
                 <a class="w-100 btn btn-light mt-2" href="{{ route('dashboard') }}">Back</a>
             </form>
         </div>

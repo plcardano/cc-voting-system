@@ -4,6 +4,12 @@
 
 
     <div class="container mt-4">
+
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>              
+        @endif
         
         <h1>Dashboard</h1>
 
@@ -14,7 +20,7 @@
                 
                 <h2>SUI</h2>
         
-                <a class="btn btn-light mb-2" href="{{ route('createsui') }}">Create SUI</a>
+                <a class="btn btn-light mb-2" href="{{ route('sui.create') }}">Create SUI</a>
 
                     <table class="mb-4">
                         {{ $suis->links() }}
@@ -22,6 +28,7 @@
                             <tr>
                                 <th>SUI</th>
                                 <th>Status</th>
+                                <th>Manage</th>
                             </tr>
             
                             @foreach ($suis as $sui)
@@ -29,6 +36,24 @@
                             
                                 <td>{{ $sui->name }}</td>
                                 <td>{{ $sui->status }}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <a href="{{ route('sui.edit', $sui->id) }}" class="btn btn-secondary"><i class="fas fa-fw fa-edit"></i></a>
+                                            
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="{{ route('sui.destroy', $sui->id) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                </td>
                                 
                             </tr>   
                             @endforeach    
@@ -40,12 +65,6 @@
             
             
             <div class="col-md-6">
-                
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>              
-                @endif
 
                 <h2>Candidates</h2>
 

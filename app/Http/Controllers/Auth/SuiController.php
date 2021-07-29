@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use App\Models\Candidate;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
-class CandidateController extends Controller
+class SuiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +26,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('candidates.create');
+        return view('sui.create');
     }
 
     /**
@@ -33,17 +35,19 @@ class CandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Candidate $candidate)
+    public function store(Request $request)
     {
-        $request->validate([
-            'candidate' => 'required'
+        $this->validate($request, [
+            'name' => 'required|max:4',
+            'password' => 'required'
         ]);
-
-        Candidate::create([
-            'candidate' => $request->candidate
+ 
+        User::create([
+            'name' => $request->name,
+            'password' => Hash::make($request->password)
         ]);
-
-        return redirect()->back()->with('status', 'Candidate Created Successfully');
+ 
+        return redirect()->back()->with('status', 'SUI Created Succesfully');
     }
 
     /**
@@ -63,9 +67,9 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Candidate $candidate)
+    public function edit(User $sui)
     {
-        return view('candidates.edit', compact('candidate'));
+        return view('sui.edit', compact('sui'));
     }
 
     /**
@@ -75,17 +79,17 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Candidate $candidate)
+    public function update(Request $request, User $sui)
     {
-        $request->validate([
-            'candidate' => 'required'
+        $this->validate($request, [
+            'name' => 'required|max:4'
         ]);
 
-        $candidate->update([
-            'candidate' => $request->candidate
+        $sui->update([
+            'name' => $request->name
         ]);
 
-        return redirect()->route('dashboard')->with('status', 'Candidate Updated Successfully');
+        return redirect()->route('dashboard')->with('status', 'SUI Updated Succesfully');
     }
 
     /**
@@ -94,10 +98,10 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Candidate $candidate)
+    public function destroy(User $sui)
     {
-        $candidate->delete();
+        $sui->delete();
 
-        return redirect()->back()->with('status', 'Candidate Deleted Successfully');
+        return redirect()->back()->with('status', 'SUI Deleted Succesfully');
     }
 }
