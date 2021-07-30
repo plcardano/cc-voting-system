@@ -5,12 +5,13 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Thank you!</h1>
-            <p class="lead">Bible verse</p>
+            {{-- <p class="lead"></p> --}}
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p>"Therefore, brethren, select from among you servant-leaders of good reputation, full of the Spirit and of wisdom, <br>whom we may put in charge of this task." <br>- Acts 6:3</p>
+            <hr>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                  <button type="submit" class="btn btn-outline-danger">Exit</button>
+                  <button type="submit" class="btn btn-outline-danger btn-lg">Exit</button>
               
                 </form>
         </div>
