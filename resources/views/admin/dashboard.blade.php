@@ -74,6 +74,7 @@
                 
 
                 <table class="mb-4">
+                    
                     <tbody class="table table-dark">
                         <tr class="text-center">
                             <th>Candidates</th>

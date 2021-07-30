@@ -49,13 +49,17 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 Route::get('/sui/login', [SuiLoginController::class, 'index'])->name('suilogin');
 Route::post('/sui/login', [SuiLoginController::class, 'store']);
 
-Route::get('/vote', [VoteController::class, 'index'])->name('vote')->middleware('auth');
-Route::get('/vote/done', function(){
-    return view('vote.done');
-})->name('done');
+Route::group(['middleware' => 'prevent-back'], function() {
+    Route::get('/vote', [VoteController::class, 'index'])->name('vote')->middleware('auth');
+    Route::get('/vote/done', function(){
+        return view('vote.done');
+    })->name('done');
 
-Route::patch('/vote/update', [VoteController::class, 'update'])->name('voteupdate');
-Route::post('/vote', [VoteController::class, 'store']);
+    Route::patch('/vote/update', [VoteController::class, 'update'])->name('voteupdate');
+    Route::post('/vote', [VoteController::class, 'store']);
+
+});
+
 
 Route::resource('/candidates', CandidateController::class);
 
