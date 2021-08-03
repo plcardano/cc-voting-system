@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCandidateRequest;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 
@@ -33,15 +34,9 @@ class CandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Candidate $candidate)
+    public function store(StoreCandidateRequest $request)
     {
-        $request->validate([
-            'candidate' => 'required'
-        ]);
-
-        Candidate::create([
-            'candidate' => $request->candidate
-        ]);
+        Candidate::create($request->validated());
 
         return redirect()->back()->with('status', 'Candidate Created Successfully');
     }
