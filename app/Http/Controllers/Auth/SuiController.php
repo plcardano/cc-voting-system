@@ -38,7 +38,7 @@ class SuiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:4',
+            'name' => ['required', 'min:4', 'max:4', 'unique:users'], 
             'password' => 'required'
         ]);
  
