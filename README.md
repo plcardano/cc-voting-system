@@ -3,7 +3,7 @@
 <ul>
     <li>Git clone this repository or download this as ZIP</li>
         <ul>
-            <li>https://github.com/kbcfdev/cc-voting-system.git</li>
+            <li>https://github.com/plcardano/cc-voting-system.git</li>
         </ul>
     <li>Update composer:</li>
         <ul>
